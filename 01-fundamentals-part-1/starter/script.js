@@ -663,10 +663,15 @@ console.log(`Battery: ${battery}% (${battery < 20 ? "Low battery warning!" : "Ba
 
 console.log("===  Final Challenge: Tip Calculator ===");
 
-const bill = 40; // Try 275, 40, 430
+const bill = 430; // Try 275, 40, 430
 
 // Step 1: Tip calculation (ternary, no if/else)
 const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
 
 // Step 2: Output with template literal
 console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`);
+
+// tried it with all 3 numbers: 275, 40, and 430 and they worked correctly
+// 275: tip = 41.25, total = 316.25
+// 40: tip = 8, total = 48
+// 430: tip = 86, total = 516
