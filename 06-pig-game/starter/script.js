@@ -21,9 +21,9 @@ const current1El = document.getElementById('current--1');
 const diceEl = document.querySelector('.dice');
 const btnRoll = document.querySelector('.btn--roll');
 
-// ===============
-// INITIALIZE GAME
-// ===============
+// =========================
+// ENHANCE THE INIT FUNCTION
+// =========================
 const init = function () {
   scores = [0, 0];
   currentScore = 0;
@@ -34,8 +34,15 @@ const init = function () {
   score1El.textContent = 0;
   current0El.textContent = 0;
   current1El.textContent = 0;
+
   diceEl.classList.add('hidden');
+
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
 };
+
 init();
 
 // =======================
@@ -184,3 +191,52 @@ console.log('Active Player:', activePlayer);
 console.log('Playing:', playing);
 console.log('Player 0 active:', player0El.classList.contains('player--active'));
 console.log('Player 1 active:', player1El.classList.contains('player--active'));
+
+// to ask ! why is this game called 'Pig Game'? There's no pig anywhere :D
+
+// =============================================
+// ADD WIN CONDITION TO CHECK HOLD FUNCTIONALITY
+// =============================================
+
+// Enhanced hold functionality with win condition and validation
+btnHold.addEventListener('click', function () {
+  if (playing && currentScore > 0) {
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+    if (scores[activePlayer] >= 100) {
+      playing = false;
+      diceEl.classList.add('hidden');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      switchPlayer();
+    }
+  }
+});
+
+// ======================
+// TEST THE WIN CONDITION
+// ======================
+console.log('Current scores:', scores);
+console.log('Win condition met:', scores[activePlayer] >= 100);
+console.log('Game playing:', playing);
+
+// ===================
+// ADD NEW GAME BUTTON
+// ===================
+const btnNew = document.querySelector('.btn--new');
+btnNew.addEventListener('click', init);
+
+// ======================
+// TEST !!! ✧｡٩(ˊᗜˋ )و✧*｡
+// ======================
+console.log('Game reset - scores:', scores);
+console.log('Game reset - playing:', playing);
+console.log('Game reset - active player:', activePlayer);
+
+// Tested the Game ! It works properly ദ്ദി(｡•̀ ,<)~✩‧₊
