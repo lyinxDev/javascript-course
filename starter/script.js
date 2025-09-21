@@ -1,8 +1,4 @@
-// =================================
-// my new format for title comments!
-// =================================
-
-'use strict';
+// 'use strict';
 
 // // ===========================================
 // // Section 1: DOM Element Selection & Caching
