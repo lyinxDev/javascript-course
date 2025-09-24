@@ -1,74 +1,198 @@
+// console.log('=== BEHIND THE SCENES: SCOPING & HOISTING ===');
+
+// // function alpha() {
+// //   console.log('alpha:start');
+// //   beta();
+// //   console.log('alpha:end');
+// // }
+
+// // function beta() {
+// //   console.log('beta');
+// // }
+
+// // alpha();
+
+// // function outerFunction() {
+// //   console.log('Outer function start');
+// //   innerFunction();
+// //   console.log('Outer function end');
+// // }
+// // function innerFunction() {
+// //   console.log('Inner function');
+// //   console.trace();
+// // }
+
+// // outerFunction();
+
+// // const outer = 'global';
+
+// // function demoScope() {
+// //   const inner = 'function';
+// //   if (true) {
+// //     const blockConst = 'block';
+// //     var functionVar = 'var-function-scoped';
+// //     console.log(outer, inner, blockConst, functionVar);
+// //   }
+// //   console.log(outer, inner, functionVar);
+// // }
+
+// // demoScope();
+
+// // const name = 'GlobalName';
+
+// // function a() {
+// //   const name = 'FunctionName';
+// //   function b() {
+// //     console.log(name);
+// //   }
+// //   b();
+// // }
+
+// // a();
+
+// console.log(varX);
+// // console.log(letX);
+// // console.log(constX);
+
+// var varX = 1;
+// let letX = 2;
+// const constX = 3;
+
+// console.log(addDecl(2, 3));
+// console.log(addExpr(2, 3));
+
+// function addDecl(a, b) {
+//   return a + b;
+// }
+
+// const addExpr = function (a, b) {
+//   return a + b;
+// };
+
+// const addArrow = (a, b) => a + b;
+
 'use strict';
 
-console.log('=== BEHIND THE SCENES: SCOPING & HOISTING ===');
+// const person = {
+//   name: 'Wonwoo ( ˃` ⩌ ´˂ )',
+//   greet: function () {
+//     console.log(`Hello, I am ${this.name}`);
+//   },
+// };
 
-// function alpha() {
-//   console.log('alpha:start');
-//   beta();
-//   console.log('alpha:end');
-// }
+// person.greet();
+// person.name = 'Agatha ꉂ(ˊᗜˋ*)♡';
+// person.greet();
 
-// function beta() {
-//   console.log('beta');
-// }
+// const anotherPerson = {
+//   name: 'Chiikawa ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧',
+// };
 
-// alpha();
+// anotherPerson.greet = person.greet;
+// anotherPerson.greet();
 
-// function outerFunction() {
-//   console.log('Outer function start');
-//   innerFunction();
-//   console.log('Outer function end');
-// }
-// function innerFunction() {
-//   console.log('Inner function');
-//   console.trace();
-// }
+// const greetFunction = person.greet;
+// greetFunction();
 
-// outerFunction();
+// const button = document.querySelector('button');
+// button.addEventListener('click', person.greet);
 
-// const outer = 'global';
+// button.addEventListener('click', () => person.greet());
 
-// function demoScope() {
-//   const inner = 'function';
-//   if (true) {
-//     const blockConst = 'block';
-//     var functionVar = 'var-function-scoped';
-//     console.log(outer, inner, blockConst, functionVar);
-//   }
-//   console.log(outer, inner, functionVar);
-// }
+// button.addEventListener('click', person.greet.bind(person));
 
-// demoScope();
+// const obj = {
+//   name: 'Object',
 
-// const name = 'GlobalName';
+//   regularMethod: function () {
+//     console.log('Regular:', this.name);
+//   },
+//   arrowMethod: () => {
+//     console.log('Arrow:', this.name);
+//   },
+// };
 
-// function a() {
-//   const name = 'FunctionName';
-//   function b() {
-//     console.log(name);
-//   }
-//   b();
-// }
+// obj.regularMethod();
+// obj.arrowMethod();
 
-// a();
+// const quiz = {
+//   name: 'Quiz Object',
+//   regularMethod() {
+//     console.log('Regular:', this.name);
+//   },
+//   arrowMethod: () => {
+//     console.log('Arrow:', this.name);
+//   },
+// };
 
-console.log(varX);
-// console.log(letX);
-// console.log(constX);
+// quiz.regularMethod();
+// quiz.arrowMethod();
 
-var varX = 1;
-let letX = 2;
-const constX = 3;
+// const timer = {
+//   name: 'Timer',
 
-console.log(addDecl(2, 3));
-console.log(addExpr(2, 3));
+//   // Old approach with self = this
+//   start: function () {
+//     console.log(`${this.name} starting...`);
+//     const self = this;
 
-function addDecl(a, b) {
-  return a + b;
-}
+//     setTimeout(function () {
+//       console.log(`${self.name} finished`);
+//     }, 5000);
+//   },
 
-const addExpr = function (a, b) {
-  return a + b;
+//   startModern: function () {
+//     console.log(`${this.name} starting modern`);
+
+//     setTimeout(() => {
+//       console.log(`${this.name} finished modern`);
+//     }, 1500);
+//   },
+// };
+
+// timer.start();
+// timer.startModern();
+
+// const user = {
+//   name: 'Agatha',
+//   hobbies: ['Reading', 'Coding', 'Gaming'],
+
+//   printHobbiesBad: () => {
+//     this.hobbies.forEach(hobby => {
+//       console.log(`${this.name} likes ${hobby}`);
+//     });
+//   },
+
+//   printHobbiesGood() {
+//     this.hobbies.forEach(hobby => {
+//       console.log(`${this.name} likes ${hobby}`);
+//     });
+//   },
+// };
+
+// // user.printHobbiesBad();
+// user.printHobbiesGood();
+
+// =========
+// SECTION 3
+// =========
+
+const functionTypes = {
+  regularFunction: function () {
+    console.log('Arguments length:', arguments.length);
+    console.log('First argument:', arguments[0]);
+  },
+
+  arrowFunction: () => {
+    console.log('Arrow function called');
+  },
+
+  modernFunction: (...args) => {
+    console.log('Args length:', args.length);
+    console.log('First arg:', args[0]);
+  },
 };
 
-const addArrow = (a, b) => a + b;
+functionTypes.regularFunction('hello', 'world');
+functionTypes.arrowFunction('test');
+functionTypes.modernFunction('modern', 'approach');
