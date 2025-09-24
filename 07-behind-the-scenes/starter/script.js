@@ -177,22 +177,85 @@
 // SECTION 3
 // =========
 
-const functionTypes = {
-  regularFunction: function () {
-    console.log('Arguments length:', arguments.length);
-    console.log('First argument:', arguments[0]);
-  },
+// const functionTypes = {
+//   regularFunction: function () {
+//     console.log('Arguments length:', arguments.length);
+//     console.log('First argument:', arguments[0]);
+//   },
 
-  arrowFunction: () => {
-    console.log('Arrow function called');
-  },
+//   arrowFunction: () => {
+//     console.log('Arrow function called');
+//   },
 
-  modernFunction: (...args) => {
-    console.log('Args length:', args.length);
-    console.log('First arg:', args[0]);
-  },
+//   modernFunction: (...args) => {
+//     console.log('Args length:', args.length);
+//     console.log('First arg:', args[0]);
+//   },
+// };
+
+// functionTypes.regularFunction('hello', 'world');
+// functionTypes.arrowFunction('test');
+// functionTypes.modernFunction('modern', 'approach');
+
+// let age = 30;
+// let oldAge = age;
+
+// age = 31;
+
+// console.log('age:', age);
+// console.log('oldAge', oldAge);
+
+// const me = { name: 'Chiikawa', age: 60 };
+// const friend = me;
+
+// friend.age = 27;
+
+// console.log('me:', me);
+// console.log('friend:', friend);
+
+function changeAge(person, newAge) {
+  person.age = newAge;
+  return person;
+}
+
+const originalPerson = { name: 'Celyn', age: 25 };
+const updatedPerson = changeAge(originalPerson, 30);
+
+console.log('original:', updatedPerson);
+console.log('same object?:', originalPerson == updatedPerson);
+
+const original = {
+  name: 'Agatha',
+  age: 28,
+  hobbies: ['reading', 'coding'],
 };
 
-functionTypes.regularFunction('hello', 'world');
-functionTypes.arrowFunction('test');
-functionTypes.modernFunction('modern', 'approach');
+const shallowCopy = { ...original };
+
+shallowCopy.name = 'Gela';
+console.log('original name:', original.name);
+console.log('copy name:', shallowCopy.name);
+
+shallowCopy.hobbies.push('Gaming');
+console.log('original hobbies:', original.hobbies);
+
+const anotherCopy = Object.assign({}, original);
+console.log('Object.assign copy:', anotherCopy);
+
+const deepOriginal = {
+  name: 'Arden',
+  age: 32,
+  address: { city: 'Tokyo', country: 'Japan' },
+  hobbies: ['travel', 'photography'],
+};
+
+const deepCopy = structuredClone(deepOriginal);
+
+deepCopy.address.city = 'Manila';
+deepCopy.hobbies.push('cooking');
+
+console.log('original address', deepOriginal.address);
+console.log('copy address', deepCopy.address);
+
+console.log('original hobbies', deepOriginal.hobbies);
+console.log('copy hobbies', deepCopy.hobbies);
